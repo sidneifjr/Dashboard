@@ -1,0 +1,752 @@
+@import url("https://fonts.googleapis.com/css?family=Lato|Merriweather");
+
+$main: #41b883;
+$second: #35495e;
+$third: #70a6e1;
+$crimson: #dc143c;
+$white: #fff;
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+::placeholder {
+  color: #ccc;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Merriweather", sans-serif;
+}
+
+h1 {
+	font-size: 1.8rem;
+	
+	@media (max-width: 400px) {
+		font-size: 0.8rem;
+	}
+}
+
+h2 {
+  font-size: 1.4rem;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+  padding: 1.6rem;
+  color: $white;
+  transition: all ease-in-out 0.2s;
+  cursor: pointer;
+
+  &.active,
+  &:hover {
+    background: $main;
+  }
+}
+
+.fa {
+  font-size: 1.5rem;
+  width: 30px;
+}
+
+%paddingLeft {
+  padding-left: 220px;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  background: $white;
+  font-size: 1rem;
+  line-height: 1.5;
+  overflow: hidden; // evita as barras por causa das animações.
+
+  @media (max-width: 900px) {
+    overflow: initial;
+  }
+}
+
+main {
+  height: 100%;
+  width: 100%;
+}
+
+/*
+// Modal
+.modal {
+  display: block;
+  position:absolute;
+  z-index:1;
+  left:0;
+  top:0;
+  height:100%;
+  width:100%;
+  overflow:auto; // irá permitir uma scrollbar, caso necessário.
+	background-color:rgba(0,0,0,0.8);
+}
+
+.modal-content {
+  background-color:#f4f4f4;
+  margin: 10% auto; // auto, pois queremos que fiquei no meio.
+  width: 50%;
+  box-shadow: 0 5px 8px 0 rgba(0,0,0,.2), 0 7px 20px 0 rgba(0,0,0,.2);
+  animation-name: fadeIn;
+  animation-duration:1s;
+}
+
+.modal-header {
+  padding: 20px;
+  color:$white;
+  background:$main;
+  text-align:center;
+}
+
+.modal-body{
+  padding: 20px;
+}
+
+.closeBtn {
+	float: right;
+	cursor: pointer;
+	font-size: 1.5rem;
+	margin-top: -3px;
+}
+*/
+
+// Sidemenu
+.menu {
+  width: 220px;
+  background: $second;
+  color: $white;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  animation-name: fadeInLeft;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+	z-index: 9999;
+	
+	@media (max-width: 400px) {
+		width: 180px;
+	}
+
+  .user {
+    padding: 1.8rem 0;
+    text-align: center;
+
+    h1 {
+      font-size: 1.6rem;
+			margin-bottom: 0.5rem;
+			
+			@media (max-width: 400px) {
+				font-size: 1rem;
+			}
+		}
+		
+		p {
+			@media (max-width: 400px) {
+				font-size: 0.8rem;
+			}
+		}
+
+    img {
+      width: 90px;
+      border: solid 3px $main;
+      border-radius: 50%;
+    }
+  }
+
+  nav {
+    a {
+
+			@media (max-width: 400px) {
+				font-size: 0.8rem;
+			}
+
+      .fa {
+        position: relative;
+        top: 2px;
+				margin-right: 0.5rem;
+				
+				@media (max-width: 400px) {
+					margin-right: 0;
+				}
+      }
+    }
+  }
+}
+
+header {
+  height: 80px;
+  max-width: 100%;
+  @extend %paddingLeft;
+
+  @media (min-width: 900px) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .searchbox {
+    position: absolute;
+    width: 40%;
+
+    input {
+      width: 50%;
+      background: #ddd;
+      color: $white;
+      margin-left: 2.5rem;
+      padding: 0.8rem;
+      border-radius: 1.2rem;
+      outline: none;
+			transition: ease-in-out 0.2s;
+			
+			@media (max-width: 400px) {
+				display: none;
+			}
+
+      @media (max-width: 900px) {
+        margin-top: 20px;
+      }
+
+      &:focus {
+        width: 70%;
+        background: #000;
+      }
+    }
+
+    span {
+      position: absolute;
+			margin: 8px 0 0 -3px;
+
+			@media (max-width: 400px) {
+				display: none;
+			}
+
+      @media (max-width: 900px) {
+        margin-top: 30px;
+      }
+    }
+  }
+
+  .fa {
+    color: $second;
+    position: relative;
+    margin-left: -30px;
+  }
+
+  .user-data {
+    position: absolute;
+    top: 26px;
+		right: 20px;
+
+		@media (max-width: 400px) {
+			right: 50px;
+		}
+
+    .fa {
+      color: $second;
+      margin-left: 0;
+      margin-right: 10px;
+      cursor: pointer;
+
+      transition: ease-in-out 0.3s;
+      transform-origin: 50% 50%;
+
+      @media (max-width: 900px) {
+        margin-right: 0;
+      }
+
+      &:hover {
+        transform: rotate(180deg);
+      }
+    }
+
+    .fa-bell-o {
+      &:after {
+        content: "3";
+        height: 15px;
+        width: 15px;
+        background: $crimson;
+
+        font-family: "Roboto", sans-serif;
+        font-size: 1rem;
+        text-align: center;
+        color: $white;
+
+        border-radius: 50%;
+        position: absolute;
+        top: -6px;
+        left: 10px;
+        display: block;
+      }
+    }
+  }
+}
+
+.leader-details {
+  background: $main;
+  color: $white;
+  padding: 20px 0 20px 220px;
+	
+	@media (max-width: 400px) {
+		padding: 10px;
+	}
+
+  @media (max-width: 900px) {
+    padding-left: 140px;
+    text-align: center;
+	}
+	
+	@media (min-width: 900px) {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+	}
+
+  img {
+    width: 120px;
+    position: relative;
+    margin-left: 40px;
+    border: solid 4px $second;
+		border-radius: 50%;
+		
+		@media (max-width: 400px) {
+			margin: 10px 0 10px 40px;
+			width: 80px;
+		}
+  }
+
+  .leader-data {
+		margin-left: 1.5rem;
+		
+		h2 {
+			@media (max-width: 400px) {
+				font-size: 0.8rem;
+			}
+		}
+
+    p {
+			margin: 0.6rem 0;
+			
+			@media (max-width: 400px) {
+				margin-left: 1.2rem;
+				font-size: 0.6rem;
+			}
+    }
+  }
+
+  .other-data {
+    margin-left: 2.5vw;
+
+    @media (max-width: 900px) {
+      margin-left: 1.5rem;
+    }
+
+    p {
+			margin: 0.6rem 0;
+			@media (max-width: 400px) {
+				margin-left: 1.2rem;
+				font-size: 0.6rem;
+				text-align: center;
+			}
+    }
+  }
+}
+
+.title {
+  h1 {
+    color: $second;
+    @extend %paddingLeft;
+    margin: 2rem 0 0 2.5rem;
+
+    @media (max-width: 900px) {
+      font-size: 1.4rem;
+      margin: 2rem 0 0 1rem;
+		}
+		
+		@media (max-width: 400px) {
+			margin-left: 0;
+			font-size: 0.6rem;
+		}
+  }
+}
+
+.databoard {
+  display: flex;
+
+  .first-area {
+    max-width: 700px;
+    padding: 20px 0 20px 250px;
+
+    @media (min-width: 900px) {
+      display: flex;
+      flex-wrap: wrap;
+		}
+		
+		@media (max-width: 400px) {
+			max-width: 400px;
+			padding: 10px 0 10px 250px;
+		}
+
+    .data {
+      width: 15vw;
+      height: 21vh;
+      background: #70a6e1;
+      text-align: center;
+
+      padding: 0 1rem;
+      color: $white;
+      transition: ease-in-out 0.4s;
+      border-radius: 10%;
+
+      margin: 0 1rem 1rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+			flex-direction: column;
+			
+			@media (max-width: 400px) {
+				width: 100px;
+				height: 80px;
+				margin-left: -30px;
+			}
+
+      &:nth-child(even) {
+        margin-right: 0;
+      }
+
+      &:hover {
+        background-color: $second;
+      }
+
+      h3 {
+				margin-bottom: 0.2rem;
+				
+				@media (max-width: 400px) {
+					font-size: 0.7rem;
+				}
+			}
+			
+			p {
+				@media (max-width: 400px) {
+					font-size: 0.5rem;
+				}
+			}
+    }
+  }
+
+  .second-area {
+    max-width: 600px;
+
+    @media (min-width: 900px) {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      padding-left: 3%;
+		}
+		
+		@media (max-width: 400px) {
+			display: none;
+		}
+
+    .crew {
+      position: relative;
+      top: 1.2rem;
+      margin: 0 auto;
+
+      @media (min-width: 900px) {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      @media (max-width: 900px) {
+        top: 1rem;
+        padding-left: 5%;
+      }
+    }
+
+    h1 {
+      color: $second;
+      padding-left: 40px;
+      margin: 0;
+      margin-top: -43px;
+      position: absolute;
+
+      @media (max-width: 900px) {
+        font-size: 1.4rem;
+        margin-top: -35px;
+      }
+    }
+
+    .personal {
+      height: 335px;
+      width: 200px;
+      position: relative;
+      top: 10px;
+      //background-color: $white;
+      text-align: center;
+      //border: solid 2px red;
+
+      @media (max-width: 900px) {
+        height: 280px;
+      }
+
+      h3 {
+        font-weight: bold;
+        margin: 0.5rem 0;
+      }
+
+      span {
+        position: relative;
+        top: 1.8rem;
+
+        @media (max-width: 900px) {
+          top: 0.8rem;
+        }
+
+        @media (min-width: 900px) {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .fa-warning {
+          color: $crimson;
+        }
+      }
+
+      img {
+        width: 90px;
+        border-radius: 50%;
+        border: solid 3px $main;
+      }
+    }
+  }
+}
+
+#crew,
+#service {
+  padding-left: 260px;
+  overflow: initial;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+
+  .cards-item {
+    display: flex;
+    padding: 1rem;
+    @media (min-width: 40rem) {
+      width: 50%;
+    }
+    @media (min-width: 56rem) {
+      width: 33.3333%;
+    }
+  }
+}
+
+#crew {
+  h1 {
+    color: $second;
+    margin-bottom: 0.5rem;
+  }
+
+  .card {
+    margin-left: -1rem; // alinhar os cards com o resto.
+    background-color: $main;
+    border-radius: 0.25rem;
+    box-shadow: 10px 15px 25px 0 rgba(0, 0, 0, 0.2);
+    transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    //animation-name: fadeInLeft;
+
+    &:hover {
+      transform: scale(1.025);
+    }
+
+    &:hover {
+      .card-img {
+        filter: contrast(100%);
+      }
+    }
+
+    .card-content {
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: column;
+      padding: 1rem;
+
+      .fa {
+        color: $second;
+      }
+
+      .card-title {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.25rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        color: $white;
+      }
+
+      .card-text {
+        font-family: "Roboto", sans-serif;
+        font-size: 0.875rem;
+        color: $white;
+        flex: 1 1 auto;
+        margin-bottom: 1.25rem;
+      }
+    }
+
+    .card-img {
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      border-top-left-radius: 0.25rem;
+      border-top-right-radius: 0.25rem;
+      filter: contrast(70%);
+      position: relative;
+      transition: filter 0.5s cubic-bezier(0.43, 0.41, 0.22, 0.91);
+
+      &::before {
+        content: "";
+        display: block;
+        padding-top: 56.25%; // 16:9 aspect ratio
+      }
+      @media (min-width: 40rem) {
+        &::before {
+          padding-top: 66.6%; // 3:2 aspect ratio
+        }
+      }
+    }
+  }
+
+  .card-img-team-a {
+    background-image: url(https://assets.porttechnology.org/images/made/images/uploads/news/Hanjin_2_600_450_84_c1.jpg);
+  }
+
+  .card-img-team-b {
+    background-image: url(https://www.lojiport.com/wp-content/uploads/2013/04/arkas.jpg);
+  }
+
+  .card-img-team-c {
+    background-image: url(https://www.lendio.com/wp-content/uploads/2012/11/export-financing-cargo-ship-800x647.jpeg);
+  }
+}
+
+#service {
+  h1 {color: $second;}
+
+  table {
+		border: 1px solid #ccc;
+		border-radius: 0.25rem;
+    border-collapse: collapse;
+		width: 90%;
+		position: relative;
+    top: 4vh;
+    table-layout: fixed;
+
+    tr {
+      background: #f8f8f8;
+      border: 1px solid #ddd;
+      padding: 0.35em;
+		}
+		
+		th {
+			color: $white;
+			background: $main;
+			font-size: 0.85em;
+			letter-spacing: 0.1em;
+			text-transform: uppercase;
+						
+			&:hover {
+				background-color: $third;
+			}
+		}
+  }
+
+  table,
+  table th,
+  table td {
+    padding: 0.625em;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 600px) {
+	table {
+		border: 0;
+
+		thead {
+			border: none;
+			clip: rect(0 0 0 0);
+			height: 1px;
+			margin: -1px;
+			overflow: hidden;
+			padding: 0;
+			position: absolute;
+			width: 1px;
+		}
+
+		tr {
+			border-bottom: 3px solid #ddd;
+			display: block;
+			margin-bottom: 0.625em;
+		}
+
+		td {
+			border-bottom: 1px solid #ddd;
+			display: block;
+			font-size: 0.8em;
+			text-align: right;
+
+			&::before {
+				content: attr(data-label);
+				float: left;
+				font-weight: bold;
+				text-transform: uppercase;
+			}
+			
+			&:last-child {
+				border-bottom: 0;
+			}
+		}
+	}
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translate3d(-200px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}

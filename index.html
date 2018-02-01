@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="stylesheets/styles.css">
+</head>
+
+<body>
+  <main id="app">
+    <!-- Login? -->
+    <!--  
+			<div id="simpleModal" class="modal">
+				<div class="modal-content">
+					<div class="modal-header">
+						<span class="closeBtn">&times;</span>
+						<h2>Simple Login</h2>
+					</div>
+					<div class="modal-body">
+						<input type="text" v-model="name" placeholder="Name?" required>
+						<input type="text" v-model="job" placeholder="Title?" required>
+						<button type="submit" class="closeBtn" v-on:click="submit">Submit!</button>
+					</div>
+				</div>
+			</div>
+			-->
+
+    <aside class="menu">
+      <div class="user">
+        <img src="https://s3.amazonaws.com/uifaces/faces/twitter/sindresorhus/128.jpg" alt="photo">
+        <h1> {{ name }} </h1>
+        <!-- Usando Vue.js, posso criar um pseudo login ao abrir a página. Aí, pergunto o nome do usuário. -->
+        <p> {{ job }} </p>
+        <!-- E seu cargo, e então os valores serão chamados no lugar certo. {{ name }} e {{ job }} -->
+      </div>
+      <nav class="tab">
+        <a href="#" class="active tablinks" v-on:click="changeTab(event, 'overview')" id="default">
+						<span><i class="fa fa-home" aria-hidden="true"></i></span>Overview
+					</a>
+
+        <a href="#" class="tablinks" v-on:click="changeTab(event, 'crew')">
+						<span><i class="fa fa-users" aria-hidden="true"></i></span>Crew Members
+					</a>
+
+        <a href="#" class="tablinks" v-on:click="changeTab(event, 'service')">
+						<span><i class="fa fa-home" aria-hidden="true"></i></span>Service Status
+					</a>
+
+        <!-- <a href="#"><i class="fa fa-power-off" aria-hidden="true"></i></a> -->
+      </nav>
+    </aside>
+
+    <header id="header">
+      <div class="searchbox">
+        <input type="text" placeholder="Type here!">
+        <span><i class="fa fa-search" aria-hidden="true"></i></span>
+      </div>
+
+      <div class="user-data">
+        <i class="fa fa-envelope" aria-hidden="true"></i>
+        <i class="fa fa-bell-o" aria-hidden="true"></i>
+        <i class="fa fa-cog" aria-hidden="true"></i>
+      </div>
+    </header>
+
+    <div id="overview" class="tabcontent">
+      <section class="leader-details">
+        <img src="https://s3.amazonaws.com/uifaces/faces/twitter/jadlimcaco/128.jpg" alt="crew member">
+        <div class="leader-data">
+          <h2>João Paulo Silva</h2>
+          <p>Chief Enginner (PSV Atabá) - Leader of Team A</p>
+          <p><i class="fa fa-check" aria-hidden="true"></i>Boarded at 07:45, 08/01/2018</p>
+        </div>
+        <div class="other-data">
+          <p><i class="fa fa-dashboard" aria-hidden="true"></i>Membercode: 12381230523-2</p>
+          <p><i class="fa fa-envelope" aria-hidden="true"></i>Email: joao@company.com</p>
+          <p><i class="fa fa-ticket" aria-hidden="true"></i>Shift: 14 days</p>
+        </div>
+      </section>
+
+      <div class="title">
+        <h1>Deployment Statistics</h1>
+      </div>
+
+      <section class="databoard">
+        <div class="first-area">
+          <div class="data">
+            <h3>PSV Atabá</h3>
+            <p>From São Paulo, Brazil</p>
+          </div>
+          <div class="data">
+            <h3>37 Years</h3>
+            <p>Average Crew Age</p>
+          </div>
+          <div class="data">
+            <h3>7 Years</h3>
+            <p>Average Time in Company</p>
+          </div>
+          <div class="data">
+            <h3>+8,5%</h3>
+            <p>Turnover in last 12 months</p>
+          </div>
+        </div>
+
+        <div class="second-area">
+          <h1>Key Personal</h1>
+          <div class="crew">
+            <div class="personal">
+              <img src="https://s3.amazonaws.com/uifaces/faces/twitter/calebogden/128.jpg" alt="">
+              <h3>Mario Fuentes</h3>
+              <p>Tech. Administration</p>
+              <p>Contract: Petrobras.</p>
+              <span><i class="fa fa-warning"></i>Unable to work with DP Vessels.</span>
+            </div>
+            <div class="personal">
+              <img src="https://s3.amazonaws.com/uifaces/faces/twitter/ritu/128.jpg" alt="">
+              <h3>Luis Domino</h3>
+              <p>Tech. Administration</p>
+              <p>Contract: Saudi Arranco.</p>
+              <span><i class="fa fa-check"></i>Able to work with DP Vessels.</span>
+            </div>
+            <div class="personal">
+              <img src="https://s3.amazonaws.com/uifaces/faces/twitter/towhidzaman/128.jpg" alt="">
+              <h3>John Doe</h3>
+              <p>Tech. Administration</p>
+              <p>Contract: Gazprom.</p>
+              <span><i class="fa fa-check"></i>Able to work with DP Vessels.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div id="crew" class="tabcontent">
+      <h1>Crew Members Headcount</h1>
+      <p>Check the ship cronograms this semester for USA to China.</p>
+
+      <ul class="cards">
+        <li class="cards-item">
+          <div class="card">
+            <div class="card-img card-img-team-a"></div>
+            <div class="card-content">
+              <div class="card-title">Hanjin (Equipe A)</div>
+              <p class="card-text">Embarcaram no horário agendado, às 08:45, 08/01/2018. </p>
+              <span>
+								<i class="fa fa-calendar" aria-hidden="true"></i>
+								<i class="fa fa-check" aria-hidden="true"></i>
+							</span>
+            </div>
+          </div>
+        </li>
+        <li class="cards-item">
+          <div class="card">
+            <div class="card-img card-img-team-b"></div>
+            <div class="card-content">
+              <div class="card-title">Arkas (Equipe B)</div>
+              <p class="card-text">Em terra, com saída agendada para 09:15, 12/03/2018.</p>
+              <span>
+								<i class="fa fa-calendar" aria-hidden="true"></i>
+							</span>
+            </div>
+          </div>
+        </li>
+        <li class="cards-item">
+          <div class="card">
+            <div class="card-img card-img-team-c"></div>
+            <div class="card-content">
+              <div class="card-title">Cargo (Equipe C)</div>
+              <p class="card-text">Embarcaram com atraso, agendado às 12:45, saída às 14:25 em 21/02/2018.</p>
+              <span>
+								<i class="fa fa-calendar" aria-hidden="true"></i>
+								<i class="fa fa-warning" aria-hidden="true"></i>
+							</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div id="service" class="tabcontent">
+      <h1>Logistic Services Status</h1>
+      <h2>CBO Chiara A - First Trip</h2>
+      <p>Type: Anchor Handling, 5-member capacity.</p>
+
+      <div class="tables">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Passengers</th>
+              <th scope="col">Function</th>
+              <th scope="col">Condition</th>
+              <th scope="col">Departure</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>João Paulo Silva</td>
+              <td>Chief Enginner</td>
+              <td>On Land*</td>
+              <td>03/05/2015 - 31/07/2015</td>
+            </tr>
+            <tr>
+              <td scope="row">Anthony David</td>
+              <td>Navigation</td>
+              <td>Onboard</td>
+              <td>02/01/2016 - TBA</td>
+            </tr>
+            <tr>
+              <td scope="row">Moisés Souza</td>
+              <td>Co-Navigation</td>
+              <td>Onboard</td>
+              <td>02/01/2016 - TBA</td>
+            </tr>
+            <tr>
+              <td scope="row">Luiz Barros </td>
+              <td>Supervisor</td>
+              <td>Onboard</td>
+              <td>02/01/2016 - TBA</td>
+						</tr>
+						<tr>
+							<td scope="row">João Pedro</td>
+							<td>Enterprise Stock Analist</td>
+							<td>On Land</td>
+							<td>09/01/2016 - 01/04/2016</td>
+						</tr>
+					</tbody>
+					<p>* Watches the team in training and offers support.</p>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
