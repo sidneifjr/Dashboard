@@ -1,3 +1,3 @@
 # Dashboard
 
-A simple Dashboard, made with SASS, Flexbox and Javascript.
+A simple responsive Dashboard, made with SASS, Flexbox and Javascript.
